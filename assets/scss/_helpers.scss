@@ -1,0 +1,197 @@
+// ///////////////////////////////////////////////////////////////////// Sizing
+@mixin size ($w: auto, $h: auto) 
+{
+	width: $w;
+	height: $h;
+}
+@mixin size-box ($v: auto) 
+{
+    width: $v;
+    height: $v;
+}
+
+@mixin size-max ($w: auto, $h: auto) 
+{
+	max-width: $w;
+	max-height: $h;
+}
+@mixin size-min ($w: auto, $h: auto) 
+{
+	min-width: $w;
+	min-height: $h;
+}
+
+// ///////////////////////////////////////////////////////////////////// Box / Text Shadow
+@mixin box-shadow ($bs) {
+    -webkit-box-shadow: $bs;
+    -moz-box-shadow: $bs ;
+    box-shadow: $bs;
+}
+@mixin text-shadow ($ts) {
+    text-shadow: $ts;
+}
+
+// ///////////////////////////////////////////////////////////////////// Auto Adjust Color
+@function auto-adjust-text-color($color) {
+    @if (lightness($color) > 40) {
+        @return #000;
+    }
+    @else {
+        @return #fff;
+    }
+}
+
+
+@mixin color ($bg:auto, $t:auto) {
+    background-color: $bg;
+    color: $t;
+}
+
+@mixin radius ($value) {
+    border-radius: $value;
+    -ms-border-radius: $value;
+    -moz-border-radius: $value;
+    -webkit-border-radius: $value;
+}
+// ///////////////////////////////////////////////////////////////////// Flex
+@mixin flex ($ff: row wrap, $js:flex-start, $ai:baseline) {
+    display: flex;
+    flex-flow: $ff;
+    justify-content: $js;
+    align-items: $ai;
+}
+
+// ///////////////////////////////////////////////////////////////////// Center
+@mixin center($position) {
+    position: absolute;
+    
+    @if $position == 'vertical' {
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+    }
+    @else if $position == 'horizontal' {
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      transform: translate(-50%);
+    }
+    @else if $position == 'both' {
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+  }
+
+
+// ///////////////////////////////////////////////////////////////////// Transform
+@mixin transform ($value) {
+    -webkit-transform: $value; /* Ch <36, Saf 5.1+, iOS < 9.2, An =<4.4.4 */
+      -ms-transform: $value; /* IE 9 */
+          transform: $value;
+}
+
+@mixin rotate ($x: 0deg, $y: 0deg, $z: 0deg) {
+    -webkit-transform: rotateX($x) rotateY($y) rotateZ($z);
+    -ms-transform: rotateX($x) rotateY($y) rotateZ($z);
+        transform: rotateX($x) rotateY($y) rotateZ($z);
+}
+
+// ///////////////////////////////////////////////////////////////////// Animations
+//Animation mixin setup
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {@content;}
+    @-moz-keyframes #{$animation-name} {@content;}  
+    @-ms-keyframes #{$animation-name} {@content;}
+    @-o-keyframes #{$animation-name} {@content;}  
+    @keyframes #{$animation-name} {@content;}
+}
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+
+//Usage
+// Define animation name, and properties
+// @include keyframes(fade-out) {
+//     0% { opacity: 1; }
+//     90% { opacity: 0; }
+//   }
+//   // Add animation to element
+//   .element {
+//     width: 100px;
+//     height: 100px;
+//     background: black;
+//     @include animation('fade-out 5s 3');
+//   }
+
+
+//Cross browser opacity
+@mixin opacity($opacity) {
+    opacity: $opacity;
+    $opacity-ie: $opacity * 100;
+    filter: alpha(opacity=$opacity-ie); //IE8
+  }
+//   .faded-text {
+//     @include opacity(0.8);
+//   }
+
+
+// ------------------------------------- Media Quries
+@mixin max-width ($mw) {
+    @media (max-width: $mw) {@content;}
+}
+
+// ---------------------------------------- Bootstrap Breakpoints
+@mixin xl {
+    @media (max-width: 1200px) {@content;}
+}
+@mixin lg {
+    @media (max-width: 992px) {@content;}
+}
+@mixin md {
+    @media (max-width: 768px) {@content;}
+}
+@mixin sm {
+    @media (max-width: 576px) {@content;}
+}
+@mixin xs {
+    @media (max-width: 0) {@content;}
+}
+// ---------------------------------------- Bootstrap Breakpoints
+
+@mixin ease-out {
+    transition: all 0.5s ease-in-out;
+}
+@mixin ease-out-duration ($duration: .4s) {
+    transition: all $duration ease-in-out;
+}
+
+
+@mixin reflect ($name, $color: #fff){
+    content: attr(#{$name});
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: bottom;
+    @include transform(rotateX(180deg));
+    line-height: .98;
+    background: linear-gradient(to top, $color -10%, transparent 30%);
+    background: -webkit-linear-gradient(to top, $color -10%, transparent 30%);
+    background: -moz-linear-gradient(to top, $color -10%, transparent 30%);
+    background: -o-linear-gradient(to top, $color -10%, transparent 30%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+
+    color: transparent;
+    text-shadow: none;
+}
+
