@@ -36,8 +36,6 @@ body {
 .carousel-item {
     height: 15vw;
     min-height: 200px;
-
-
 }
 .carousel-img-1 {
     background: url(../imgs/111.png);
@@ -58,6 +56,13 @@ body {
     .lead {
         color: $primary;
     }
+}
+
+#img-box {
+    box-shadow: 0 0 20px 3px #000;
+    transition: transform 300ms ease-out;
+    &:hover {box-shadow: 0 0 20px 3px #fff; transform: scale(1.04)}
+}
 
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
