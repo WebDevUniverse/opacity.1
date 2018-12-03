@@ -61,7 +61,7 @@ body {
 #img-box {
     box-shadow: 0 0 20px 3px #000;
     transition: transform 300ms ease-out;
-    &:hover {box-shadow: 0 0 20px 3px #fff; transform: scale(1.04)}
+    &:hover {box-shadow: 0 0 20px 2px $primary; transform: scale(1.04)}
 }
 
 
