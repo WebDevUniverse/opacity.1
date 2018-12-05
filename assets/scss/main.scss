@@ -34,7 +34,7 @@ body {
 }
 
 .carousel-item {
-    height: 15vw;
+    height: 20vw;
     min-height: 200px;
 }
 .carousel-img-1 {
@@ -59,11 +59,27 @@ body {
 }
 
 #img-box {
-    box-shadow: 0 0 10px 1px #000;
-    transition: transform 300ms ease-out;
-    &:hover {box-shadow: 0 0 10px 1px $primary; transform: scale(1.04)}
+
+    img {
+        box-shadow: 0 0 10px 1px #000;
+        transition: .5s ease-in-out; 
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+        margin-bottom: 1.5rem;
+
+        &:hover {
+            -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
+            filter: grayscale(0%);
+            box-shadow: 0 0 10px 1px $primary;
+            transform: scale(1.04)
+        }
+    }
 }
 
+.my-lead {
+    font-size: 22px;
+    color: $primary;
+}
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
 @import "../../node_modules/bootstrap/scss/functions";
