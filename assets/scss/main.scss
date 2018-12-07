@@ -1,7 +1,7 @@
 @import "helpers.scss";
 
 //-------------------- Config
-$primary: #f4ff57;
+$primary: #b7ff74;
 $primary-overlay: rgba($primary, .9);
 
 // ------------------------------ nav-link Color and Hover
@@ -13,6 +13,10 @@ $navbar-dark-active-color: $primary;
 // $navbar-light-hover-color: rgba($primary, .7);
 // $navbar-light-active-color: rgba($primary, .9);
 
+$carousel-indicator-width: .6rem;
+$carousel-indicator-height: .6rem;
+$carousel-indicator-active-bg: rgba($primary, .7);
+$carousel-control-color: rgba($primary, .7);
 
 // -------------- Style From Here
 
@@ -34,7 +38,7 @@ body {
 }
 
 .carousel-item {
-    height: 20vw;
+    height: 15vw;
     min-height: 200px;
 }
 .carousel-img-1 {
